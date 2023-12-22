@@ -9,6 +9,13 @@ appcompat = "1.6.1"
 material = "1.11.0"
 constraintlayout = "2.1.4"
 
+#추가 적인 라이브러리 버전 관리
+naver-map-sdk = "3.16.1"
+retrofit = "2.9.0"
+moshi-kotlin = "1.14.0"
+androidyoutubeplayer = "12.1.0" # 유튜브 Exp
+
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -17,6 +24,16 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#추가적인 라이브러리
+naver-map-sdk = { group = "com.naver.maps", name = "map-sdk", version.ref = "naver-map-sdk" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi-kotlin" }
+
+androidyoutubeplayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "androidyoutubeplayer" } # 유튜브 EXP
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
