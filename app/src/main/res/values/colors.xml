@@ -2,4 +2,23 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--메인 컬러-->
+    <color name="main_color">#0066FF</color>
+
+    <!-- 색 지정-->
+    <color name="sub_color_gray">#989898</color>
+
+    <!--바텀 네비바 장르 색상-->
+    <color name="sub_color_text_gray2">#948888</color>
+
+<!-- 바텀 네비바 컬러 지정-->
+    <color name="bottom_navigation_color">#F4F7FB</color>
+    <color name="bottom_nav_selected_color">#0066FF</color>
+    <color name="bottom_nav_selected_text_color">#0066FF</color>
+    <color name="bottom_nav_unselected_color">#DDDDDD</color>
+    <color name="bottom_nav_unselected_text_color">#DDDDDD</color>
+
+
+
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--바텀 네비바 스타일-->
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="fontFamily">@font/pretendard</item>
+        <item name="android:textSize">10sp</item>
+        <item name="itemIconTint">@drawable/bottom_navigation_icon_color</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_text_color</item>
+    </style>
+
+</resources>
