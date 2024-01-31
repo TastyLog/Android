@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/bottom_menu_item1"
-        android:id="@+id/menu_home"
-        android:icon="@drawable/bottom_icon_home"/>
     <item android:title="@string/bottom_menu_item2"
         android:id="@+id/menu_map"
         android:icon="@drawable/bottom_icon_map"/>
-    <item android:title="@string/bottom_menu_item3"
-        android:id="@+id/menu_favorite"
-        android:icon="@drawable/bottom_icon_favorite"/>
-    <item android:title="@string/bottom_menu_item4"
-        android:id="@+id/menu_my"
-        android:icon="@drawable/bottom_icon_mypage"/>
 </menu>

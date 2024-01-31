@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:gravity="center">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_list_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:backgroundTint="@color/white"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/sub_color_gray3"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textview_list_restaurant_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pretendard"
+                android:gravity="right"
+                android:text="1.2km"
+                android:drawableStart="@drawable/icon_directions_walk"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_list_restaurant_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/sub_color_gray"
+                app:strokeWidth="0.5dp">
+
+                <ImageView
+                    android:id="@+id/imageview_list_restaurant_picture"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textview_list_restaurant_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/cardview_list_restaurant_picture"
+                android:fontFamily="@font/pretendard"
+                android:text="영미 오리탕"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_list_restaurant_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="고기/구이"
+                android:fontFamily="@font/pretendard"
+                android:textColor="@color/sub_color_text_gray2"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/cardview_list_restaurant_picture"
+                android:layout_below="@id/textview_list_restaurant_name"/>
+
+            <ImageView
+                android:id="@+id/imageview_star"
+                android:layout_width="16dp"
+                android:layout_height="14dp"
+                android:src="@drawable/icon_star"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/cardview_list_restaurant_picture"
+                android:layout_below="@id/textview_list_restaurant_category"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/textview_list_restaurant_rate_reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_toRightOf="@id/imageview_star"
+                android:layout_below="@id/textview_list_restaurant_category"
+                android:text="4.63/5 | 리뷰 52,123개"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="5.5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard"/>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

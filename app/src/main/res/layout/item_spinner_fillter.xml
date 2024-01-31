@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textSize="12sp"
+    android:textColor="@color/black"
+    android:textAppearance="?attr/textAppearanceSubtitle1"
+    android:fontFamily="@font/pretendard"
+    android:background="@drawable/spinner_ripple"> <!-- 새로운 배경 리소스 적용 -->
+</TextView>

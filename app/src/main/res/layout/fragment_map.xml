@@ -4,18 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <com.naver.maps.map.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/lottieAnimationView"
+        app:layout_anchorGravity="center" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_youtuber_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_influencer_chip"/>
 
+    <!-- 추가된 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_list_restaurant_dialog"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="80dp"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-black"
+        android:textSize="10sp"
+        android:background="@drawable/button_selector_main"
+        android:text="리스트 보기" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
 
     <include
         android:id="@+id/bottomSheetLayout"
-        layout="@layout/item_bottom_sheet"/>
+        layout="@layout/item_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
