@@ -1,183 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview_bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
     android:background="@drawable/bottom_sheet_background"
-    app:behavior_fitToContents="true"
     app:behavior_hideable="false"
-    app:behavior_peekHeight="100dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
+    app:behavior_peekHeight="30dp"
+    android:visibility="gone"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:gravity="center">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view_handle"
         android:layout_width="60dp"
         android:layout_height="6dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/drawer_view_corner_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_horizontal" />
 
-    <LinearLayout
-        android:id="@+id/linearlayout_youtube_player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scrollView_bottom_sheet"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/youtube_player_view"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
-            app:videoId="BcjlE6AiMG8"
-            app:autoPlay="false" />
-<!--            app:showSeekBar="true"-->
-<!--            app:showVideoDuration="true"-->
-<!--            app:showVideoCurrentTime="true"-->
-<!--            app:showFullScreenButton="true"-->
-<!--            app:showYoutubeButton="false"-->
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textview_restaurant_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="버거킹"
-        android:textColor="@color/black"
-        android:fontFamily="@font/pretendard"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/linearlayout_youtube_player"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:id="@+id/textview_restaurant_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="@color/sub_color_text_gray2"
-        android:fontFamily="@font/pretendard"
-        android:textStyle="bold"
-        android:text="중식, 양식, 일식, 햄버거, 감자탕"
-        app:layout_constraintTop_toBottomOf="@id/textview_restaurant_title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-    <FrameLayout
-        android:id="@+id/frame_layout_naver_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textview_restaurant_genre"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp">
-        <com.google.android.material.card.MaterialCardView
+        <TextView
+            android:id="@+id/textview_restaurant_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/pretendard"
+            android:gravity="right"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/icon_directions_walk"
+            android:text="0.0km"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_list_restaurant_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
             app:strokeWidth="0.5dp"
             android:backgroundTint="@color/white"
+            android:layout_below="@id/textview_restaurant_distance"
             app:strokeColor="@color/sub_color_gray"
             app:cardElevation="0dp">
             <ImageView
-                android:id="@+id/imageview_naver_map"
-                android:layout_width="34dp"
-                android:layout_height="24dp"
-                android:scaleType="fitXY"
+                android:id="@+id/imageview_restaurant_picture"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/icon_naver_map"/>
+                android:scaleType="fitXY" />
         </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
-    <ImageView
-        android:id="@+id/imageview_naver_restaurant_rate"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/icon_star"
-        android:layout_marginStart="15dp"
-        app:layout_constraintLeft_toRightOf="@id/frame_layout_naver_map"
-        app:layout_constraintTop_toTopOf="@id/frame_layout_naver_map"
-        app:layout_constraintBottom_toBottomOf="@id/frame_layout_naver_map" />
-    <TextView
-        android:id="@+id/textview_naver_restaurant_grade_and_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/imageview_naver_restaurant_rate"
-        app:layout_constraintTop_toTopOf="@id/imageview_naver_restaurant_rate"
-        app:layout_constraintBottom_toBottomOf="@id/imageview_naver_restaurant_rate"
-        android:layout_marginStart="10dp"
-        android:text="4.63/5 | 리뷰 52,123개"
-        android:fontFamily="@font/pretendard"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:textColor="@color/black" />
-
-
-
-    <FrameLayout
-        android:id="@+id/frame_layout_kakao_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frame_layout_naver_map"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp">
-            <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view_kakao_map"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                app:strokeWidth="0.5dp"
-                android:backgroundTint="#FAE100"
-                app:strokeColor="@color/sub_color_gray"
-                app:cardElevation="0dp">
-                <ImageView
-                    android:id="@+id/imageview_kakao_map"
-                    android:layout_width="34dp"
-                    android:layout_height="24dp"
-                    android:scaleType="fitCenter"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/icon_kakao_map"/>
-            </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageview_kakao_restaurant_rate"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/icon_star"
-        android:layout_marginStart="15dp"
-        app:layout_constraintLeft_toRightOf="@id/frame_layout_kakao_map"
-        app:layout_constraintTop_toTopOf="@id/frame_layout_kakao_map"
-        app:layout_constraintBottom_toBottomOf="@id/frame_layout_kakao_map" />
 
     <TextView
-        android:id="@+id/textview_kakao_restaurant_grade_and_review"
+        android:id="@+id/textview_restaurant_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/imageview_kakao_restaurant_rate"
-        app:layout_constraintTop_toTopOf="@id/imageview_kakao_restaurant_rate"
-        app:layout_constraintBottom_toBottomOf="@id/imageview_kakao_restaurant_rate"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
-        android:text="4.63/5 | 리뷰 5,121개"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="45dp"
+        android:layout_toRightOf="@id/card_view_list_restaurant_picture"
         android:fontFamily="@font/pretendard"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:textColor="@color/black" />
+        android:text="123"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/textview_restaurant_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:fontFamily="@font/pretendard"
+            android:textColor="@color/sub_color_text_gray2"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/card_view_list_restaurant_picture"
+            android:layout_below="@id/textview_restaurant_name"/>
+
+        <ImageView
+            android:id="@+id/imageview_star"
+            android:layout_width="16dp"
+            android:layout_height="14dp"
+            android:src="@drawable/icon_star"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/card_view_list_restaurant_picture"
+            android:layout_below="@id/textview_restaurant_category"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/textview_restaurant_rate_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_toRightOf="@id/imageview_star"
+            android:layout_below="@id/textview_restaurant_category"
+            android:text="123"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5.5dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/pretendard"/>
 
     <View
         android:id="@+id/view_open"
@@ -185,25 +125,24 @@
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/drawer_view_corner_radius"
-        app:layout_constraintTop_toBottomOf="@id/frame_layout_kakao_map"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="30dp"/>
+        android:layout_below="@id/card_view_list_restaurant_picture"
+        android:layout_marginHorizontal="5dp"/>
+
 
     <TextView
         android:id="@+id/textview_restaurant_call_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/icon_call"
-        app:layout_constraintTop_toBottomOf="@id/view_open"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:textSize="14sp"
         android:textStyle="bold"
         android:fontFamily="@font/pretendard"
         android:textColor="@color/black"
-        android:text="02-463-5222"
+        android:text=""
         android:gravity="center_vertical"
+        android:layout_below="@id/view_open"
         android:drawablePadding="10dp"/>
 
     <TextView
@@ -211,137 +150,194 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/icon_marker"
-        app:layout_constraintTop_toBottomOf="@id/textview_restaurant_call_number"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
         android:textStyle="bold"
         android:fontFamily="@font/pretendard"
         android:textColor="@color/black"
-        android:text="안양시 동안구 학의로 123"
+        android:text=""
         android:gravity="center_vertical"
+        android:layout_below="@id/textview_restaurant_call_number"
         android:drawablePadding="10dp"/>
-
-    <TextView
-        android:id="@+id/textview_copy_restaurant_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/icon_copy"
-        app:layout_constraintLeft_toRightOf="@id/textview_restaurant_address"
-        app:layout_constraintTop_toTopOf="@id/textview_restaurant_address"
-        app:layout_constraintBottom_toBottomOf="@id/textview_restaurant_address"
-        android:layout_marginStart="10dp"
-        android:text="복사"
-        android:textColor="@color/sub_color_text_gray2"
-        android:fontFamily="@font/pretendard"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:focusable="true"/>
 
     <View
         android:id="@+id/view_close"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/drawer_view_corner_radius"
-        app:layout_constraintTop_toBottomOf="@id/textview_copy_restaurant_address"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="30dp"/>
+        android:layout_below="@id/textview_restaurant_address"
+        android:layout_marginHorizontal="5dp"/>
 
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_youtube_player_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_close"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="15dp"
+        app:strokeWidth="0dp">
+
+        <FrameLayout
+            android:layout_width="350dp"
+            android:layout_height="220dp">
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="350dp"
+            android:layout_height="220dp"
+            app:autoPlay="false" >
+            <!--app:videoId="BcjlE6AiMG8"-->
+            <ImageView
+                android:id="@+id/image_view_youtube_thumnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+            <ImageView
+                android:id="@+id/imageview_youtube_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_youtube"/>
+
+        </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+        <!--            app:showSeekBar="true"-->
+        <!--            app:showVideoDuration="true"-->
+        <!--            app:showVideoCurrentTime="true"-->
+        <!--            app:showFullScreenButton="true"-->
+        <!--            app:showYoutubeButton="false"-->
+
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <FrameLayout
         android:id="@+id/frame_layout_naver_map_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toLeftOf="@id/frame_layout_kakao_map_intent"
-        app:layout_constraintTop_toTopOf="@id/frame_layout_kakao_map_intent"
-        app:layout_constraintBottom_toBottomOf="@id/frame_layout_kakao_map_intent"
-        android:layout_marginEnd="20dp">
+        android:layout_below="@id/card_view_youtube_player_view"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_centerInParent="true">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            app:strokeWidth="1dp"
-            android:backgroundTint="@color/white"
-            app:strokeColor="@color/sub_color_gray"
-            app:cardElevation="0dp">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_intent_naver_map"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="5dp"
+        android:backgroundTint="#03C75A">
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
             <ImageView
-                android:id="@+id/imageview_naver_map_intent"
-                android:layout_width="70dp"
-                android:layout_height="55dp"
+                android:id="@+id/imageview_naver_logo"
+                android:layout_marginStart="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
                 android:scaleType="fitXY"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/icon_naver_map"/>
-        </com.google.android.material.card.MaterialCardView>
+                android:src="@drawable/naver_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/naver_font_bold"
+                android:layout_marginStart="20dp"
+                android:text="네이버 지도로 보기"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
+
 
     <FrameLayout
         android:id="@+id/frame_layout_kakao_map_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_close"
-        android:layout_marginTop="20dp">
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            app:strokeWidth="1dp"
-            android:backgroundTint="#FAE100"
-            app:strokeColor="@color/sub_color_gray"
-            app:cardElevation="0dp">
-            <ImageView
-                android:id="@+id/imageview_kakao_map_intent"
-                android:layout_width="70dp"
-                android:layout_height="55dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/icon_kakao_map"/>
-        </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frame_layout_kakaotalk_intent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/frame_layout_kakao_map_intent"
-        app:layout_constraintTop_toTopOf="@id/frame_layout_kakao_map_intent"
-        app:layout_constraintBottom_toBottomOf="@id/frame_layout_kakao_map_intent"
-        android:layout_marginStart="20dp">
+        android:layout_below="@id/frame_layout_naver_map_intent"
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_centerInParent="true">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_intent_kakao_map"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="5dp"
+        android:backgroundTint="#FEE500">
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageview_kakao_logo"
+                android:layout_marginStart="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_kakao_map" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/naver_font"
+                android:layout_marginStart="20dp"
+                android:text="카카오 맵으로 보기"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_layout_kakao_share_intent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            app:strokeWidth="1dp"
-            android:backgroundTint="#FAE100"
-            app:strokeColor="@color/sub_color_gray"
-            app:cardElevation="0dp">
-            <ImageView
-                android:id="@+id/imageview_kakaotalk_intent"
-                android:layout_width="70dp"
-                android:layout_height="55dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/icon_kakaotalk"/>
-        </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
+            android:layout_below="@id/frame_layout_kakao_map_intent"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerInParent="true">
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_intent_kakao_share"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="5dp"
+                android:backgroundTint="#FEE500">
 
+                <LinearLayout
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageview_kakaotalk_logo"
+                        android:layout_marginStart="35dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/icon_kakaotalk" />
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/naver_font"
+                        android:layout_marginStart="20dp"
+                        android:text="카카오톡으로 공유하기"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

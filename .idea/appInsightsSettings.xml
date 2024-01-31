@@ -8,7 +8,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.adam.fruittimer" />
+                  <option name="appId" value="com.adam.tastylog" />
                 </ConnectionSetting>
               </option>
               <option name="failureTypes">
@@ -27,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.adam.tastylog" />
+                  <option name="mobileSdkAppId" value="1:56165271940:android:a13d936ce7af3c71fb75d1" />
+                  <option name="projectId" value="tastylog-353f1" />
+                  <option name="projectNumber" value="56165271940" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

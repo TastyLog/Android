@@ -10,10 +10,40 @@ material = "1.11.0"
 constraintlayout = "2.1.4"
 
 #추가 적인 라이브러리 버전 관리
-naver-map-sdk = "3.16.1"
+naver-map-sdk = "3.17.0"
 retrofit = "2.9.0"
 moshi-kotlin = "1.14.0"
 androidyoutubeplayer = "12.1.0" # 유튜브 Exp
+circleImageView = "3.1.0" # 원형 이미지 뷰
+play-services-location = "21.0.0" #내 위치
+lottie = "5.0.2"
+gson = "2.8.6"
+lifecycleLivedataKtx = "2.6.2"
+glide = "4.12.0"
+playServicesMaps = "18.2.0"
+converter-gson = "2.6.4"
+logging-interceptor = "4.12.0"
+
+lifecycleViewModelKtx = "2.4.1"
+lifecycleRuntimeKtx = "2.4.1"
+coroutinesCore = "1.6.1"
+coroutinesAndroid = "1.6.1"
+shimmer = "0.5.0"
+core-splashscreen = "1.0.0"
+kakao-sdk = "2.11.2" # 카카오톡 공유 기능 버전
+timber = "4.7.1"
+navigationUiKtx = "2.7.6"
+navigationFragmentKtx = "2.7.6" # 편리한 Log 관리 라이브러리
+
+play-services-ads = "22.5.0"
+googleGmsVersion = "4.4.0" # Google services 플러그인의 버전
+firebaseBom = "32.7.1"
+#firebaseMessagingKtx = "23.4.0"  # Firebase BoM 버전
+
+
+
+
+
 
 
 [libraries]
@@ -32,10 +62,38 @@ retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi-kotlin" }
 
 androidyoutubeplayer = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version.ref = "androidyoutubeplayer" } # 유튜브 EXP
+circleImageView = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleImageView" } # 원형 이미지 뷰
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "play-services-location" } # 내 location
+lottie = {group = "com.airbnb.android", name = "lottie", version.ref = "lottie"} # 프로그래스 애니메이션
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" } # gson 라이브러리
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" } # lifecycle
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" } # 이미징 라이브러리
+glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converter-gson"}
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging-interceptor"}
+shimmer = {group = "com.facebook.shimmer", name="shimmer", version.ref = "shimmer"} #스켈레톤 UI
+core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+kakao-sdk-share = { group = "com.kakao.sdk", name = "v2-share", version.ref = "kakao-sdk" } # 카카오톡 공유
+
+
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModelKtx" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesCore" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesAndroid" }
+timber = { group = "com.jakewharton.timber", name= "timber", version.ref="timber"}
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+
+firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+#firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+play-services-ads = {group="com.google.android.gms",name="play-services-ads", version.ref="play-services-ads"}
+
 
 
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+googleGmsServices = { id = "com.google.gms.google-services", version.ref = "googleGmsVersion" }
 

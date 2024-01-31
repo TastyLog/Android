@@ -8,9 +8,12 @@
 
     <!-- 색 지정-->
     <color name="sub_color_gray">#989898</color>
-
+    <color name="sub_color_gray_review">#48494B</color>
     <!--바텀 네비바 장르 색상-->
     <color name="sub_color_text_gray2">#948888</color>
+
+    <!-- 음식점 리스트 테두리 색상 -->
+    <color name="sub_color_gray3">#AEA8A8</color>
 
 <!-- 바텀 네비바 컬러 지정-->
     <color name="bottom_navigation_color">#F4F7FB</color>
