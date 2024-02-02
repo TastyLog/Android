@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.ir.backend.js.compile
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
@@ -16,10 +18,9 @@ android {
         applicationId = "com.adam.tastylog"
         minSdk = 28
         targetSdk = 34
-        versionCode = 17
+        versionCode = 18
 //        versionName = "1.0.1-beta"
-        versionName = "1.0.2"
-
+        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -61,7 +62,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
-//    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.messaging.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -92,5 +93,6 @@ dependencies {
     implementation(platform(libs.firebaseBom)) // Firebase BoM
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation(libs.play.services.ads)
+    implementation(libs.simpleratingbar)
 
 }

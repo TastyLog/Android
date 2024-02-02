@@ -38,7 +38,9 @@ navigationFragmentKtx = "2.7.6" # 편리한 Log 관리 라이브러리
 play-services-ads = "22.5.0"
 googleGmsVersion = "4.4.0" # Google services 플러그인의 버전
 firebaseBom = "32.7.1"
-#firebaseMessagingKtx = "23.4.0"  # Firebase BoM 버전
+firebaseMessagingKtx = "23.4.0"  # Firebase BoM 버전
+simpleratingbar = "0.1.5" # 별점 레이팅 바
+
 
 
 
@@ -86,10 +88,9 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 
 firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
-#firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 play-services-ads = {group="com.google.android.gms",name="play-services-ads", version.ref="play-services-ads"}
-
-
+simpleratingbar = {group="com.iarcuschin", name = "simpleratingbar", version.ref="simpleratingbar"}
 
 
 [plugins]

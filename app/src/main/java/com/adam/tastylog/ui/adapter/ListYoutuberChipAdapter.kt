@@ -1,9 +1,12 @@
 package com.adam.tastylog.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.graphics.blue
+import androidx.core.graphics.red
 import androidx.recyclerview.widget.RecyclerView
 import com.adam.tastylog.R
 import com.adam.tastylog.model.YoutuberModel
@@ -47,12 +50,19 @@ class ListYoutuberChipAdapter(
         // 선택된 상태에 따라 투명도 설정
         if (youtuber.youtuberName in selectedYoutubers) {
             // 선택된 아이템은 투명도를 적용
-            holder.textviewYoutuberName.alpha = 0.6f // 예시 값
-            holder.circleImageViewYoutuber.alpha = 0.6f // 예시 값
+            holder.textviewYoutuberName.setTextColor(Color.WHITE)
+            holder.textviewYoutuberName.setBackgroundResource(R.drawable.textview_corner_radius_black)
+//            holder.circleImageViewYoutuber.alpha = 0.6f // 예시 값
+            holder.circleImageViewYoutuber.borderWidth = 5
+            holder.circleImageViewYoutuber.borderColor = Color.BLACK // 검은색 border 설정
+
         } else {
             // 선택되지 않은 아이템은 투명도를 원래대로
-            holder.textviewYoutuberName.alpha = 1.0f
-            holder.circleImageViewYoutuber.alpha = 1.0f
+            holder.textviewYoutuberName.setTextColor(Color.BLACK)
+            holder.textviewYoutuberName.setBackgroundResource(R.drawable.textview_corner_radius)
+//            holder.circleImageViewYoutuber.alpha = 1.0f
+            holder.circleImageViewYoutuber.borderWidth = 0
+
         }
 
         holder.itemView.setOnClickListener {

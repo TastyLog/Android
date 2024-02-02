@@ -9,7 +9,6 @@
     android:background="@drawable/bottom_sheet_background"
     app:behavior_hideable="false"
     app:behavior_peekHeight="30dp"
-    android:visibility="gone"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:gravity="center">
 
@@ -37,13 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:fontFamily="@font/pretendard"
+            android:fontFamily="@font/bamin"
             android:gravity="right"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/icon_directions_walk"
             android:text="0.0km"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="9sp"
             android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
@@ -51,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
-            app:strokeWidth="0.5dp"
+            app:strokeWidth="0.0dp"
             android:backgroundTint="@color/white"
             android:layout_below="@id/textview_restaurant_distance"
             app:strokeColor="@color/sub_color_gray"
@@ -73,58 +71,80 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="9dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/bamin"
         android:text="123"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="15sp" />
 
-    <TextView
+        <TextView
             android:id="@+id/textview_restaurant_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123"
-            android:fontFamily="@font/pretendard"
-            android:textColor="@color/sub_color_text_gray2"
-            android:textSize="10sp"
-            android:textStyle="bold"
+            android:layout_below="@id/textview_restaurant_name"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-            android:layout_below="@id/textview_restaurant_name"/>
-
-        <ImageView
-            android:id="@+id/imageview_star"
-            android:layout_width="16dp"
-            android:layout_height="14dp"
-            android:src="@drawable/icon_star"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-            android:layout_below="@id/textview_restaurant_category"
-            android:layout_marginStart="10dp"/>
+            android:fontFamily="@font/bamin"
+            android:text="123"
+            android:textColor="@color/sub_color_text_gray2"
+            android:textSize="8sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textview_restaurant_rate_reviews"
+            android:id="@+id/textview_bottomSheet_restaurant_reviews"
             android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_toRightOf="@id/imageview_star"
-            android:layout_below="@id/textview_restaurant_category"
-            android:text="123"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/textview_restaurant_category"
+            android:layout_toRightOf="@id/card_view_list_restaurant_picture"
+            android:fontFamily="@font/bamin"
+            android:text="리뷰"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="8sp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/ratingbar_bottomSheet_restaurant_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srb_starSize="11dp"
+            app:srb_numberOfStars="5"
+            app:srb_rating="3.4"
+            app:srb_stepSize="0.5"
+            android:layout_toRightOf="@id/card_view_list_restaurant_picture"
+            android:layout_below="@id/textview_bottomSheet_restaurant_reviews"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            app:srb_borderColor="#FF0000"
+            app:srb_fillColor="#FF0000"
+            app:srb_starBorderWidth ="3"
+            app:srb_starCornerRadius = "1"
+            app:srb_isIndicator="true"/>
+
+        <TextView
+            android:id="@+id/textview_bottomSheet_restaurant_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ratingbar_bottomSheet_restaurant_rating"
+            android:layout_below="@id/textview_bottomSheet_restaurant_reviews"
+            android:text="4.65 / 5"
+            android:textColor="@color/black"
+            android:textSize="9sp"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="5.5dp"
+            android:layout_marginTop="3dp"
+            android:padding="1dp"
             android:textStyle="bold"
-            android:fontFamily="@font/pretendard"/>
+            android:fontFamily="@font/bamin"/>
 
     <View
         android:id="@+id/view_open"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/drawer_view_corner_radius"
+        android:background="@color/sub_color_gray2"
         android:layout_below="@id/card_view_list_restaurant_picture"
         android:layout_marginHorizontal="5dp"/>
 
@@ -136,37 +156,36 @@
         android:drawableStart="@drawable/icon_call"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/pretendard"
+        android:textSize="11sp"
+        android:fontFamily="@font/bamin"
         android:textColor="@color/black"
-        android:text=""
+        android:text="123"
         android:gravity="center_vertical"
         android:layout_below="@id/view_open"
         android:drawablePadding="10dp"/>
 
-    <TextView
-        android:id="@+id/textview_restaurant_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/icon_marker"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/pretendard"
-        android:textColor="@color/black"
-        android:text=""
-        android:gravity="center_vertical"
-        android:layout_below="@id/textview_restaurant_call_number"
-        android:drawablePadding="10dp"/>
+        <TextView
+            android:id="@+id/textview_restaurant_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/icon_marker"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="11sp"
+            android:fontFamily="@font/bamin"
+            android:textColor="@color/black"
+            android:text="123"
+            android:gravity="center_vertical"
+            android:layout_below="@id/textview_restaurant_call_number"
+            android:drawablePadding="10dp" />
+
 
     <View
         android:id="@+id/view_close"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/drawer_view_corner_radius"
+        android:background="@color/sub_color_gray2"
         android:layout_below="@id/textview_restaurant_address"
         android:layout_marginHorizontal="5dp"/>
 
@@ -213,90 +232,86 @@
         </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <FrameLayout
-        android:id="@+id/frame_layout_naver_map_intent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/card_view_youtube_player_view"
-        android:layout_marginTop="20dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_centerInParent="true">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_intent_naver_map"
-        android:layout_width="330dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="5dp"
-        android:backgroundTint="#03C75A">
+        <FrameLayout
+            android:id="@+id/frame_layout_naver_map_intent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/card_view_youtube_player_view"
+            android:layout_centerHorizontal="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_intent_naver_map"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="5dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#03C75A">
+                <LinearLayout
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageview_naver_logo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/naver_logo" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/naver_font_bold"
+                        android:text="네이버 지도로 보기"
+                        android:layout_marginEnd="15dp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
-            <ImageView
-                android:id="@+id/imageview_naver_logo"
-                android:layout_marginStart="30dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:scaleType="fitXY"
-                android:src="@drawable/naver_logo" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/naver_font_bold"
-                android:layout_marginStart="20dp"
-                android:text="네이버 지도로 보기"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
-
-
-    <FrameLayout
-        android:id="@+id/frame_layout_kakao_map_intent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/frame_layout_naver_map_intent"
-        android:layout_marginTop="10dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_centerInParent="true">
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_intent_kakao_map"
-        android:layout_width="330dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="5dp"
-        android:backgroundTint="#FEE500">
-
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageview_kakao_logo"
-                android:layout_marginStart="30dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:scaleType="fitXY"
-                android:src="@drawable/icon_kakao_map" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/naver_font"
-                android:layout_marginStart="20dp"
-                android:text="카카오 맵으로 보기"
-                android:textColor="@color/black" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/frame_layout_kakao_map_intent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/frame_layout_naver_map_intent"
+            android:background="?attr/selectableItemBackgroundBorderless">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_intent_kakao_map"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="5dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FEE500">
+                <LinearLayout
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageview_kakao_logo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="centerCrop"
+                        android:padding="4dp"
+                        android:src="@drawable/icon_kakao_map" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/naver_font"
+                        android:layout_marginEnd="15dp"
+                        android:text="카카오 맵으로 보기"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/frame_layout_kakao_share_intent"
@@ -305,6 +320,7 @@
             android:layout_below="@id/frame_layout_kakao_map_intent"
             android:layout_marginTop="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true">
 
             <com.google.android.material.card.MaterialCardView
@@ -312,27 +328,29 @@
                 android:layout_width="330dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="5dp"
+                app:strokeWidth="0dp"
                 android:backgroundTint="#FEE500">
 
                 <LinearLayout
                     android:layout_width="330dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageview_kakaotalk_logo"
-                        android:layout_marginStart="35dp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
+                        android:scaleType="centerInside"
+                        android:layout_marginStart="6dp"
+                        android:padding="7dp"
                         android:src="@drawable/icon_kakaotalk" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:fontFamily="@font/naver_font"
-                        android:layout_marginStart="20dp"
                         android:text="카카오톡으로 공유하기"
                         android:textColor="@color/black" />
                 </LinearLayout>

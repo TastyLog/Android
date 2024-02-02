@@ -103,7 +103,8 @@ class DetailRestaurantActivity : AppCompatActivity() {
         //UI 요소에 레스토랑 정보 설정
         binding.textviewRestaurantYoutubers.text = restaurant.youtuberName
         binding.textviewRestaurantName.text = restaurant.restaurantName
-        binding.textviewRestaurantRate.text = String.format("%.2f", restaurant.rating)
+        binding.textviewRestaurantRating.text = "${restaurant.rating}"
+        binding.ratingbarRestaurantRating.rating = restaurant.rating.toFloat()
         binding.textviewRestaurantReviews.text = String.format("네이버 리뷰 %d개", restaurant.totalReviews)
         binding.textviewRestaurantCategory.text = "${restaurant.category}"
         binding.textviewRestaurantCallNumber.text = "${restaurant.phoneNumber}"
@@ -267,14 +268,15 @@ class DetailRestaurantActivity : AppCompatActivity() {
 
     //카카오톡 공유하기 함수
     private fun sendKakaoLink(restaurant: RestaurantModel) {
+        val playStoreUrl = "https://play.google.com/store/apps/details?id=com.adam.tastylog"
         val defaultFeed = FeedTemplate(
             content = Content(
                 title = restaurant.restaurantName,
                 description = restaurant.address,
                 imageUrl = "https://food-log-bucket.s3.ap-northeast-2.amazonaws.com/${(restaurant.representativeImage)}",
                 link = Link(
-                    mobileWebUrl = restaurant.naverLink,
-                    webUrl = restaurant.naverLink // 웹 브라우저용 링크
+                    mobileWebUrl = playStoreUrl,
+                    webUrl = playStoreUrl // 웹 브라우저용 링크
                 )
             ),
             buttons = listOf(

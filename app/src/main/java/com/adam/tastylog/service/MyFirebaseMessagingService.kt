@@ -12,6 +12,8 @@ import com.adam.tastylog.R
 //import com.adam.tastylog.model.FcmToken
 import com.adam.tastylog.ui.activity.MainActivity
 import com.adam.tastylog.utils.RetrofitBuilder
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 //import com.google.firebase.messaging.FirebaseMessagingService
 //import com.google.firebase.messaging.RemoteMessage
 import retrofit2.Call
@@ -34,7 +36,11 @@ import retrofit2.Response
 //            apply()
 //        }
 //    }
-//
+//}
+
+
+
+
 //    override fun onMessageReceived(remoteMessage: RemoteMessage) {
 //        super.onMessageReceived(remoteMessage)
 //        // 메시지 처리 로직 구현
@@ -47,7 +53,7 @@ import retrofit2.Response
 //        // 알림 관련 코드
 //        // ...
 //    }
-//
+//}
 
 
 
