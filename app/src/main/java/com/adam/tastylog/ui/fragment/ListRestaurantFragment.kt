@@ -126,7 +126,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
 //    }
 
     private fun setupUI() {
-        val backButton = binding.imageButtonBack
+        val backButton = binding.frameLayoutBackButtonFrame
         val autoCompleteTextView = binding.autoComplete
         val items = listOf("거리순", "평점순", "리뷰순")
         val adapter = ArrayAdapter(requireContext(), R.layout.item_spinner_fillter, items)
@@ -298,7 +298,6 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
     }
 
 
-
 // Shimmer를 표시하는 함수
 private fun showTravelData() {
     shimmerLayout.startShimmer()
@@ -430,7 +429,7 @@ private fun showTravelData() {
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d("ads log", "배너 광고가 로드 시패했습니다. ${adError.responseInfo}")
+                Log.d("ads log", "배너 광고가 로드 실패했습니다. ${adError.responseInfo}")
             }
 
             override fun onAdOpened() {

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="120dp"
     android:padding="10dp"
     android:background="@color/white"
     android:gravity="center">
@@ -12,7 +12,7 @@
             <TextView
                 android:id="@+id/textview_list_restaurant_distance_loading"
                 android:layout_width="25dp"
-                android:layout_height="12dp"
+                android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="5dp"
@@ -27,7 +27,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardview_list_restaurant_picture"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="0dp"
@@ -37,18 +37,18 @@
 
                 <ImageView
                     android:id="@+id/imageview_list_restaurant_picture_loading"
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="80dp"
+                    android:layout_height="90dp"
                     android:scaleType="fitXY"
                     android:background="#B3B3B3" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/textview_list_restaurant_name_loading"
-                android:layout_width="250dp"
+                android:layout_width="200dp"
                 android:layout_height="20dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/cardview_list_restaurant_picture"
                 android:fontFamily="@font/pretendard"
@@ -74,11 +74,25 @@
 
 
             <TextView
-                android:id="@+id/textview_list_restaurant_rate_reviews"
+                android:id="@+id/textview_list_restaurant_reviews"
                 android:layout_width="100dp"
                 android:layout_height="14dp"
                 android:layout_toRightOf="@id/cardview_list_restaurant_picture"
                 android:layout_below="@id/textview_list_restaurant_category_loading"
+                android:background="#B3B3B3"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5.5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard"/>
+
+            <TextView
+                android:id="@+id/textview_list_restaurant_rate"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:layout_toRightOf="@id/cardview_list_restaurant_picture"
+                android:layout_below="@id/textview_list_restaurant_reviews"
                 android:background="#B3B3B3"
                 android:textColor="@color/black"
                 android:textSize="10sp"

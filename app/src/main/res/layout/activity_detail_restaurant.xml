@@ -92,6 +92,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:orientation="vertical">
 
     <LinearLayout
@@ -104,14 +105,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/bamin"
         android:gravity="center"
         android:text="tzuyang쯔양"
         android:layout_marginStart="10dp"
         android:padding="5dp"
         android:background="@drawable/textview_corner_radius"
         android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
     </LinearLayout>
 
@@ -119,7 +120,7 @@
         android:id="@+id/textview_restaurant_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/bamin"
         android:text="다오라참치마켓"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -133,24 +134,33 @@
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageview_star"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/icon_star"
-            android:layout_marginStart="10dp"/>
-
-        <TextView
-            android:id="@+id/textview_restaurant_rate"
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/ratingbar_restaurant_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/pretendard"
-            android:gravity="center"
-            android:text="4.9"
-            android:layout_marginStart="3dp"
+            app:srb_starSize="12dp"
+            app:srb_numberOfStars="5"
+            app:srb_rating="3.4"
+            app:srb_stepSize="0.5"
+            android:layout_marginStart="10dp"
+            app:srb_borderColor="#FF0000"
+            app:srb_fillColor="#FF0000"
+            app:srb_starBorderWidth ="3"
+            app:srb_starCornerRadius = "1"
+            app:srb_isIndicator="true"/>
+
+        <TextView
+            android:id="@+id/textview_restaurant_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.65 / 5"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="11sp"
+            android:layout_marginStart="3dp"
+            android:padding="1dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bamin"/>
+
     </LinearLayout>
 
     <TextView
@@ -158,13 +168,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/bamin"
         android:gravity="center"
         android:text="네이버 리뷰 481"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:textColor="@color/sub_color_gray_review"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
 
     <View
@@ -189,16 +199,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:fontFamily="@font/pretendard"
+            android:textSize="12sp"
+            android:fontFamily="@font/bamin"
             android:textColor="@color/black"
             android:text="카테고리" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:fontFamily="@font/pretendard"
+        android:textSize="12sp"
+        android:fontFamily="@font/bamin"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:text="전화번호" />
@@ -206,8 +216,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:fontFamily="@font/pretendard"
+        android:textSize="12sp"
+        android:fontFamily="@font/bamin"
         android:textColor="@color/black"
         android:layout_marginTop="5dp"
         android:text="위치정보" />
@@ -225,8 +235,8 @@
                     android:id="@+id/textview_restaurant_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/pretendard"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/bamin"
                     android:textColor="@color/black"
                     android:text="한식" />
 
@@ -234,8 +244,8 @@
                     android:id="@+id/textview_restaurant_call_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/pretendard"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/bamin"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:text="1234" />
@@ -243,8 +253,8 @@
                     android:id="@+id/textview_restaurant_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/pretendard"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/bamin"
                     android:textColor="@color/black"
                     android:layout_marginTop="5dp"
                     android:text="123" />
@@ -277,8 +287,8 @@
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:background="@drawable/button_selector_map_copy_address"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/pretendard"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/bamin"
                         android:textColor="@color/sub_color_text_gray2"
                         android:text="주소 복사" />
                         <androidx.appcompat.widget.AppCompatButton
@@ -287,8 +297,8 @@
                             android:layout_height="35dp"
                             android:layout_weight="1"
                             android:background="@drawable/button_selector_map_intent_map"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/pretendard"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/bamin"
                             android:textColor="@color/sub_color_text_gray2"
                             android:text="지도로 보기" />
                     </LinearLayout>
@@ -348,31 +358,33 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless">
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_intent_naver_map_detail_activity"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="5dp"
+                app:strokeWidth="0dp"
                 android:backgroundTint="#03C75A">
                 <LinearLayout
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal">
                     <ImageView
                         android:id="@+id/imageview_naver_logo"
-                        android:layout_marginStart="30dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerInside"
                         android:src="@drawable/naver_logo" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:fontFamily="@font/naver_font_bold"
-                        android:layout_marginStart="20dp"
                         android:text="네이버 지도로 보기"
+                        android:layout_marginEnd="15dp"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -391,25 +403,26 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="5dp"
+                app:strokeWidth="0dp"
                 android:backgroundTint="#FEE500">
                 <LinearLayout
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal">
                     <ImageView
                         android:id="@+id/imageview_kakao_logo"
-                        android:layout_marginStart="30dp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
+                        android:padding="4dp"
                         android:src="@drawable/icon_kakao_map" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:fontFamily="@font/naver_font"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="15dp"
                         android:text="카카오 맵으로 보기"
                         android:textColor="@color/black" />
                 </LinearLayout>

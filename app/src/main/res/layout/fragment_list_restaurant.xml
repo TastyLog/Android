@@ -15,14 +15,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/image_button_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="20dp"
+                <FrameLayout
+                    android:id="@+id/frameLayout_backButton_Frame"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
                     android:background="@drawable/image_button_selector_ripple"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/icon_back"/>
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/image_button_back"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/icon_back"
+                        android:layout_gravity="center" /> <!-- 뒤로가기 아이콘 설정, 중앙에 배치 -->
+
+                </FrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_youtuber_chip"
@@ -49,7 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:fontFamily="@font/pretendard"
+                        android:fontFamily="@font/bamin"
                         android:inputType="none"
                         android:popupBackground="@color/white"
                         android:text="거리순"
@@ -64,7 +73,7 @@
                     android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="vertical"
-                    tools:listitem="@layout/item_list_restaurant2"/>
+                    tools:listitem="@layout/item_list_restaurant"/>
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmer_layout"
@@ -76,6 +85,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <include layout="@layout/item_list_restaurant_loading"/>
+                        <include layout="@layout/item_list_restaurant_loading"/>
                         <include layout="@layout/item_list_restaurant_loading"/>
                         <include layout="@layout/item_list_restaurant_loading"/>
                         <include layout="@layout/item_list_restaurant_loading"/>

@@ -30,6 +30,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -64,6 +65,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
+import com.iarcuschin.simpleratingbar.SimpleRatingBar
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
@@ -300,7 +302,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val textviewRestaurantCategory = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_category)
         val textviewRestaurantCallNumber = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_call_number)
         val textviewRestaurantAddress = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_address)
-        val textviewRateReviews = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_rate_reviews) // 별점과 리뷰 수 표시
+        val textviewReviews = bottomSheetLayout.findViewById<TextView>(R.id.textview_bottomSheet_restaurant_reviews) // 리뷰 수
+        val ratingBarRating = bottomSheetLayout.findViewById<SimpleRatingBar>(R.id.ratingbar_bottomSheet_restaurant_rating) // 별점 레이팅
+        val textviewRating = bottomSheetLayout.findViewById<TextView>(R.id.textview_bottomSheet_restaurant_rate) // 별점 텍스트
         val textviewRestaurantDistance = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_distance)
         val youtubePlayerView = bottomSheetLayout.findViewById<YouTubePlayerView>(R.id.youtube_player_view) // YouTubePlayerView 찾기
         val imageViewYoutubeIcon = bottomSheetLayout.findViewById<ImageView>(R.id.imageview_youtube_icon)
@@ -393,6 +397,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         textviewRestaurantCategory.text = restaurant.category
         textviewRestaurantCallNumber.text = restaurant.phoneNumber
         textviewRestaurantDistance.text = restaurant.distance
+        textviewRating.text = restaurant.rating.toString()
+        ratingBarRating.rating = restaurant.rating.toFloat()
 
         textviewRestaurantAddress.setOnClickListener{
             copyTextToClipboard(restaurant.address)
@@ -409,10 +415,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 startActivity(intent)
             }
         }
-        val rateReviewsText = "${restaurant.rating}/5 | 리뷰 ${
+        val rateReviewsText = "리뷰 ${
             NumberFormat.getNumberInstance(
                 Locale.getDefault()).format(restaurant.totalReviews)}개"
-        textviewRateReviews.text = rateReviewsText
+        textviewReviews.text = rateReviewsText
 
         //추가
     }

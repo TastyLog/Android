@@ -2,10 +2,12 @@ package com.adam.tastylog.ui.activity
 
 import android.Manifest
 import android.app.Activity
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        checkNotificationPermission()
 
         locationServiceLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (isLocationServiceEnabled()) {
@@ -116,6 +120,31 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("취소", null)
             .show()
     }
+
+//    private fun checkNotificationPermission() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            if (!manager.areNotificationsEnabled()) {
+//                // 알림이 비활성화되어 있으면 사용자에게 활성화를 요청하는 대화상자 표시
+//                showNotificationPermissionDialog()
+//            }
+//        }
+//    }
+//
+//    private fun showNotificationPermissionDialog() {
+//        AlertDialog.Builder(this)
+//            .setTitle("알림 권한 필요")
+//            .setMessage("이 앱은 알림 기능을 사용하기 위해 알림 권한이 필요합니다. 알림 설정을 활성화해 주세요.")
+//            .setPositiveButton("설정으로 이동") { _, _ ->
+//                val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+//                    putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+//                }
+//                startActivity(intent)
+//            }
+//            .setNegativeButton("취소", null)
+//            .show()
+//    }
+
 }
 
 

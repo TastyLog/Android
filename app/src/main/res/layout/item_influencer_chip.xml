@@ -46,8 +46,8 @@
                     android:padding="5dp"
                     android:text="성시경"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/pretendard"
-                    android:textSize="11sp" />
+                    android:fontFamily="@font/bamin"
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>
