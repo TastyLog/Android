@@ -13,16 +13,22 @@ class RestaurantRepository(private val getRestaurantListUseCase: GetRestaurantLi
         return restaurantResponse.data.content.map { mapToRestaurantModel(it) }
     }
 
-    // 유튜버 ID 기반 필터링된 식당 목록 가져오는 함수
-    suspend fun getRestaurantListFilteredByYoutuber(latitude: Double, longitude: Double, youtuberIds: String, page: Int, size: Int, sorting: String): RestaurantData {
-        val restaurantResponse = getRestaurantListUseCase.executeFilteredByYoutuber(latitude, longitude, youtuberIds, page, size, sorting)
-        return restaurantResponse.data // 여기서 RestaurantData 객체 반환
-    }
+//    // 유튜버 ID 기반 필터링된 식당 목록 가져오는 함수
+//    suspend fun getRestaurantListFilteredByYoutuber(latitude: Double, longitude: Double, youtuberIds: String, page: Int, size: Int, sorting: String): RestaurantData {
+//        val restaurantResponse = getRestaurantListUseCase.executeFilteredByYoutuber(latitude, longitude, youtuberIds, page, size, sorting)
+//        return restaurantResponse.data // 여기서 RestaurantData 객체 반환
+//    }
 
     // 정렬 및 유튜버 ID 기반 필터링된 식당 목록을 가져오는 함수
     suspend fun getSortedFilteredRestaurantList(latitude: Double, longitude: Double, sorting: String, youtuberIds: String, page: Int, size: Int): RestaurantData {
         val restaurantResponse = getRestaurantListUseCase.executeSortedFiltered(latitude, longitude, sorting, youtuberIds, page, size)
         return restaurantResponse.data // RestaurantData 객체 반환
+    }
+
+    // 검색 기능
+    suspend fun getSearchRestaurantListWithFilters(latitude: Double, longitude: Double, searchWord: String, sorting: String, youtuberIds: String, page: Int, size: Int): RestaurantData {
+        val restaurantResponse = getRestaurantListUseCase.executeSearchWithFilters(latitude, longitude, searchWord, sorting, youtuberIds, page, size)
+        return restaurantResponse.data
     }
 
     private fun mapToRestaurantModel(restaurantData: RestaurantModel): RestaurantModel {

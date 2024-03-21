@@ -12,10 +12,10 @@
                 android:layout_width="80dp"
                 android:layout_height="90dp"
                 android:backgroundTint="@color/white"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
-                android:layout_marginTop="15dp"
+                android:layout_centerVertical="true"
                 app:strokeColor="@color/sub_color_gray"
                 app:strokeWidth="0.0dp">
                 <ImageView
@@ -28,40 +28,47 @@
                     android:scaleType="fitXY" />
             </com.google.android.material.card.MaterialCardView>
 
+
+
+    <TextView
+        android:id="@+id/textview_list_restaurant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/cardview_list_restaurant_picture"
+        android:layout_toLeftOf="@id/frame_layout_circleImageView_list_restaurant_influencer"
+        android:fontFamily="@font/naver_font_bold"
+        android:text="영미 오리탕"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+
+
     <FrameLayout
         android:id="@+id/frame_layout_circleImageView_list_restaurant_influencer"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginTop="15dp"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="20dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView_list_restaurant_influencer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/naver_logo"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView_list_restaurant_influencer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/naver_logo"/>
     </FrameLayout>
-
-            <TextView
-                android:id="@+id/textview_list_restaurant_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/cardview_list_restaurant_picture"
-                android:fontFamily="@font/bamin"
-                android:text="영미 오리탕"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/textview_list_restaurant_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="고기/구이"
-                android:fontFamily="@font/bamin"
+                android:fontFamily="@font/naver_font"
                 android:textColor="@color/sub_color_text_gray2"
                 android:textSize="9sp"
                 android:layout_marginStart="10dp"
@@ -92,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/bamin"
+                android:fontFamily="@font/naver_font"
                 android:gravity="right"
                 android:text="1.2km"
                 android:layout_below="@id/textview_list_restaurant_category"
@@ -120,7 +127,7 @@
         android:text="리뷰 52,123개"
         android:textColor="@color/black"
         android:textSize="9sp"
-        android:fontFamily="@font/bamin"
+        android:fontFamily="@font/naver_font"
         android:layout_marginTop="8dp" />
 
 
@@ -155,7 +162,7 @@
         android:layout_marginTop="8dp"
         android:padding="1dp"
         android:textStyle="bold"
-        android:fontFamily="@font/bamin"/>
+        android:fontFamily="@font/naver_font"/>
 
 
 <!--    <TextView-->

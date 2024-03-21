@@ -248,6 +248,44 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    private fun createMarkers(restaurants: List<RestaurantModel>) {
+        clearMarkers()
+        restaurants.forEach { restaurant ->
+            createAndAddMarker(restaurant)
+        }
+    }
+
+    private fun createAndAddMarker(restaurant: RestaurantModel) {
+        val profileImageUrl = "https://food-log-bucket.s3.ap-northeast-2.amazonaws.com/${restaurant.youtuberProfile}"
+        Glide.with(this)
+            .asBitmap()
+            .load(profileImageUrl)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    val marker = Marker()
+                    marker.position = LatLng(restaurant.latitude, restaurant.longitude)
+                    marker.width = Marker.SIZE_AUTO
+                    marker.height = Marker.SIZE_AUTO
+
+                    val baseIcon = createBaseMarkerIcon()
+                    val combinedIcon = overlayProfileImageOnMarker(baseIcon, resource)
+                    marker.icon = OverlayImage.fromBitmap(combinedIcon)
+                    marker.map = naverMap
+                    marker.tag = restaurant
+
+                    marker.setOnClickListener {
+                        val selectedRestaurant = it.tag as RestaurantModel
+                        updateBottomSheetUI(selectedRestaurant)
+                        toggleBottomSheet()
+                        true
+                    }
+                    markers.add(marker)
+                }
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    // 필요한 경우 처리하기
+                }
+            })
+    }
 
     //프로필 이미지 원형 처리 함수
     private fun createRoundedProfileImage(profileImage: Bitmap): Bitmap {
@@ -296,6 +334,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return baseIcon
     }
 
+    //마커 Clear 시키는 함수
+    private fun clearMarkers() {
+        markers.forEach { it.map = null }
+        markers.clear()
+    }
+
+
+    /** 바텀 시트 UI 업데이트 */
     private fun updateBottomSheetUI(restaurant: RestaurantModel) {
         val bottomSheetLayout = binding.root.findViewById<View>(R.id.bottomSheetLayout)
         val textviewRestaurantName = bottomSheetLayout.findViewById<TextView>(R.id.textview_restaurant_name)
@@ -423,7 +469,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         //추가
     }
 
-    //카카오맵 함수
+
+    /** 카카오 맵 인텐트*/
     private fun openKakaoMap(restaurant: RestaurantModel) {
         try {
             // 카카오맵 앱 URL 스키마
@@ -437,6 +484,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**Default 웹사이트 인텐트*/
     private fun openWebPage(url: String) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             data = Uri.parse(url)
@@ -473,6 +521,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
+    /**현재 위치로 카메라 이동*/
     private fun moveCameraToCurrentLocation() {
         Log.d("MapFragment", "Moving camera to current location")
         if (isLocationPermissionGranted() && isLocationServiceEnabled()) {
@@ -492,6 +541,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**맛집 정보 Load*/
     private fun getCurrentLocationAndFetchRestaurants() {
         Log.d("MapFragment", "Getting current location")
         if (isLocationPermissionGranted() && isLocationServiceEnabled()) {
@@ -525,43 +575,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-    private fun createMarkers(restaurants: List<RestaurantModel>) {
-        clearMarkers()
-        restaurants.forEach { restaurant ->
-            val marker = Marker()
-            marker.position = LatLng(restaurant.latitude, restaurant.longitude)
-            marker.width = Marker.SIZE_AUTO
-            marker.height = Marker.SIZE_AUTO
-            marker.map = naverMap
-            marker.tag = restaurant
-            // 유튜버 프로필 이미지 로드 및 마커 아이콘 설정
-            loadMarkerIcon(marker, restaurant.youtuberProfile)
-
-            marker.setOnClickListener {
-                val selectedRestaurant = it.tag as RestaurantModel
-                updateBottomSheetUI(selectedRestaurant)
-                toggleBottomSheet()
-                true
-            }
-            markers.add(marker)
-        }
-    }
-    private fun loadMarkerIcon(marker: Marker, profileImage: String) {
-        val profileImageUrl = "https://food-log-bucket.s3.ap-northeast-2.amazonaws.com/$profileImage"
-        Glide.with(this)
-            .asBitmap()
-            .load(profileImageUrl)
-            .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    val baseIcon = createBaseMarkerIcon()
-                    val combinedIcon = overlayProfileImageOnMarker(baseIcon, resource)
-                    marker.icon = OverlayImage.fromBitmap(combinedIcon)
-                }
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    // 필요한 경우 처리하기
-                }
-            })
-    }
 
     // 주소를 클립보드에 복사하는 함수
     private fun copyTextToClipboard(text: String) {
@@ -596,6 +609,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    /**유튜버 선택 필터링*/
     private fun handleYoutuberSelection(youtuber: YoutuberModel) {
         if (youtuber.youtuberName == "전체") {
             selectedYoutubers.clear()
@@ -628,11 +642,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    //마커 Clear 시키는 함수
-    private fun clearMarkers() {
-        markers.forEach { it.map = null }
-        markers.clear()
-    }
 
     // 우리나라 전체를 보여주는 부드러운 줌아웃
     private fun smoothZoomOutToKorea() {

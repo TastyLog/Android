@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/bottom_sheet_background">
 
+
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -14,6 +17,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                 <FrameLayout
                     android:id="@+id/frameLayout_backButton_Frame"
@@ -33,38 +41,102 @@
 
                 </FrameLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_youtuber_chip"
+                    <EditText
+                        android:id="@+id/editTextSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/searchview_background2"
+                        android:hint="검색어를 입력해주세요"
+                        android:padding="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/icon_search_black"/>
+
+
+
+                </LinearLayout>
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recyclerview_youtuber_chip"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/item_influencer_chip" />-->
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
-                    tools:listitem="@layout/item_influencer_chip"/>
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/autoCompleteTextInputLayout"
-                    style="@style/CustomExposedDropdownMenu"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@color/white"
-                    android:layout_gravity="right"
-                    app:endIconTint="@color/black"
-                    app:hintTextColor="@color/black">
+                    <!-- 기존의 나머지 뷰들을 이어서 배치합니다 -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomExposedDropdownMenu"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        app:endIconDrawable="@drawable/icon_drop_down"
+                        app:endIconMode="custom"
+                        app:endIconTint="@color/black"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeWidth="1dp">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/auto_complete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:fontFamily="@font/bamin"
-                        android:inputType="none"
-                        android:popupBackground="@color/white"
-                        android:text="거리순"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textview_youtuber_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textview_corner_radius_white"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:text="유튜버"
+                            android:textColor="@color/black"
+                            android:textSize="10sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/autoCompleteTextInputLayout"
+                        style="@style/CustomExposedDropdownMenu"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/white"
+                        app:endIconTint="@color/black"
+                        app:boxStrokeWidth="1dp"
+                        app:hintTextColor="@color/black">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/auto_complete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:fontFamily="@font/naver_font"
+                            android:inputType="none"
+                            android:popupBackground="@color/white"
+                            android:text="거리순"
+                            android:textColor="@color/black"
+                            android:textSize="10sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_list_restaurant"
@@ -92,17 +164,9 @@
                         <include layout="@layout/item_list_restaurant_loading"/>
                         <include layout="@layout/item_list_restaurant_loading"/>
                     </LinearLayout>
+
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
             </LinearLayout>
-
-            <!-- AdView 추가 위치 -->
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/google_ads_key"/>
         </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

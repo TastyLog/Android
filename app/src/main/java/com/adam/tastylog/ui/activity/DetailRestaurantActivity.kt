@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.adam.tastylog.R
@@ -51,7 +52,7 @@ class DetailRestaurantActivity : AppCompatActivity() {
         binding = ActivityDetailRestaurantBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setBannerAds()
+//        setBannerAds()
 
         // 인텐트에서 RestaurantModel 객체 받기
         val restaurantData = intent.getSerializableExtra("restaurantData") as? RestaurantModel
@@ -99,6 +100,11 @@ class DetailRestaurantActivity : AppCompatActivity() {
         val cardViewKakaoMapIntent = findViewById<MaterialCardView>(R.id.card_view_intent_kakao_map_detail_activity)//카카오 링크로 이동하는 CardView 찾기
         val cardViewNaverMapIntent = findViewById<MaterialCardView>(R.id.card_view_intent_naver_map_detail_activity) // 네이버 링크로 이동하는 CardView 찾기
         val imageUrl = "https://food-log-bucket.s3.ap-northeast-2.amazonaws.com/" + restaurant.representativeImage
+
+
+        val sharedPreferences = getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val fcmToken = sharedPreferences.getString("fcmToken", "Token not available")
+
 
         //UI 요소에 레스토랑 정보 설정
         binding.textviewRestaurantYoutubers.text = restaurant.youtuberName
@@ -322,27 +328,27 @@ class DetailRestaurantActivity : AppCompatActivity() {
 
 
     // 구글 ADS 함수
-    private fun setBannerAds() {
-        MobileAds.initialize(this)
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-        // 애드뷰 리스너 추가
-        binding.adView.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                Log.d("ads log", "배너 광고가 로드되었습니다.")
-            }
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d("ads log", "배너 광고가 로드 시패했습니다. ${adError.responseInfo}")
-            }
-            override fun onAdOpened() {
-                Log.d("ads log", "배너 광고를 열었습니다.")
-            }
-            override fun onAdClicked() {
-                Log.d("ads log", "배너 광고를 클랙했습니다.")
-            }
-            override fun onAdClosed() {
-                Log.d("ads log", "배너 광고를 닫았습니다.")
-            }
-        }
-    }
+//    private fun setBannerAds() {
+//        MobileAds.initialize(this)
+//        val adRequest = AdRequest.Builder().build()
+//        binding.adView.loadAd(adRequest)
+//        // 애드뷰 리스너 추가
+//        binding.adView.adListener = object : AdListener() {
+//            override fun onAdLoaded() {
+//                Log.d("ads log", "배너 광고가 로드되었습니다.")
+//            }
+//            override fun onAdFailedToLoad(adError: LoadAdError) {
+//                Log.d("ads log", "배너 광고가 로드 시패했습니다. ${adError.responseInfo}")
+//            }
+//            override fun onAdOpened() {
+//                Log.d("ads log", "배너 광고를 열었습니다.")
+//            }
+//            override fun onAdClicked() {
+//                Log.d("ads log", "배너 광고를 클랙했습니다.")
+//            }
+//            override fun onAdClosed() {
+//                Log.d("ads log", "배너 광고를 닫았습니다.")
+//            }
+//        }
+//    }
 }

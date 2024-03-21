@@ -13,12 +13,19 @@
     <!--커스텀 필터 스타일-->
     <style name="CustomExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <!-- 테두리 색상 변경 -->
+<!--        <item name="boxStrokeColor">@color/sub_color_gray3</item>-->
         <item name="boxStrokeColor">@color/black</item>
         <!-- 텍스트 및 힌트 색상 변경 -->
         <item name="android:textColorHint">@color/sub_color_gray3</item>
         <item name="android:textColor">@color/black</item>
         <!-- 활성화 시 색상 변경 -->
-        <item name="colorControlActivated">@color/main_color</item>
+<!--        <item name="colorControlActivated">@color/sub_color_gray3</item>-->
+        <item name="colorControlActivated">@color/sub_color_gray</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+
+<!--        <item name="android:strokeColor">@color/black</item>-->
+<!--        <item name="strokeColor">@color/black</item>-->
+<!--        <item name="thumbStrokeColor">@color/black</item>-->
 
         <item name="colorControlNormal">@color/black</item>
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.SearchRestaurantActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_weight="6"
+            android:background="@drawable/searchview_background2"
+            android:drawableStart="@drawable/icon_search_gray"
+            android:gravity="center_vertical"
+            android:hint="검색어를 입력해주세요"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="8dp"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/textviewCancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="취소"
+            android:fontFamily="@font/pretendard"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="최근 검색어"
+        android:fontFamily="@font/naver_font_bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textview_delete_search_keyword_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="전체삭제"
+            android:textSize="12sp"
+            android:fontFamily="@font/naver_font"
+            android:textColor="@color/sub_color_gray3"
+            android:clickable="true"
+            android:background="@drawable/image_button_selector_ripple"/>
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchHistoryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        tools:listitem="@layout/item_search"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#E8E9EB" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가장 많이 검색하고 있어요"
+        android:fontFamily="@font/naver_font_bold"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:id="@+id/textview_update_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20:10 기준"
+        android:fontFamily="@font/naver_font_bold"
+        android:textSize="13sp"
+        android:textColor="@color/sub_color_gray3"
+        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"/>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_real_time_search_term"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        tools:listitem="@layout/item_real_time_search_term"/>
+
+</LinearLayout>

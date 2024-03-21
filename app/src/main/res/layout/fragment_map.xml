@@ -29,7 +29,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="80dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/bamin"
+        android:fontFamily="@font/naver_font"
         android:textSize="11sp"
         android:background="@drawable/button_selector_main"
         android:text="리스트 보기" />
@@ -45,6 +45,7 @@
 
     <include
         android:id="@+id/bottomSheetLayout"
-        layout="@layout/item_bottom_sheet" />
+        layout="@layout/item_bottom_sheet"
+        android:visibility="invisible"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

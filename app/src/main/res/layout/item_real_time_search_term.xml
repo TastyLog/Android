@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textView_search_rank"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="16sp"
+        android:fontFamily="@font/pretendard"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/textView_search_rank_keyword"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="김민우 돼지"
+        android:textSize="14sp"
+        android:fontFamily="@font/pretendard"
+        android:textColor="@color/black"
+        android:layout_marginEnd="8dp"/>
+
+    <ImageView
+        android:id="@+id/imageview_search_rank_change"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:visibility="gone"
+        android:src="@drawable/icon_arrow_new"/>
+    <TextView
+        android:id="@+id/textview_search_rank_change"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:fontFamily="@font/pretendard"
+        android:textColor="#EC3939"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:text="N"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView_search_rank_change"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:gravity="center"-->
+<!--        android:fontFamily="@font/pretendard"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:text="+1"/>-->
+</LinearLayout>

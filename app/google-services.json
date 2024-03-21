@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56165271940",
+    "project_id": "tastylog-353f1",
+    "storage_bucket": "tastylog-353f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56165271940:android:a13d936ce7af3c71fb75d1",
+        "android_client_info": {
+          "package_name": "com.adam.tastylog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuT5M2zNbeGakkvNg7EXFKaQZKuA-SilI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
