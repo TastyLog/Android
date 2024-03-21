@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Always include this permission -->
-    <!--     ACCESS_COARSE_LOCATION 권한은 선언하고 ACCESS_FINE_LOCATION 권한은 선언하지 않으면 높은 정확도의 위치를 수신할 수 없으므로 두 권한 모두 입력 -->
+    <!-- ACCESS_COARSE_LOCATION 권한은 선언하고 ACCESS_FINE_LOCATION 권한은 선언하지 않으면 높은 정확도의 위치를 수신할 수 없으므로 두 권한 모두 입력 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:name=".MYApplication"
@@ -20,17 +20,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TastyLog"
         tools:targetApi="31">
-
-
-<!--        &lt;!&ndash; Firebase Messaging Service 등록 &ndash;&gt;-->
-<!--        <service-->
-<!--            android:name=".service.MyFirebaseMessagingService"-->
-<!--            android:exported="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
-
+        <activity
+            android:name=".ui.activity.SearchRestaurantActivity"
+            android:exported="false"
+            android:label="@string/title_activity_search_restaurant"
+            android:theme="@style/Theme.TastyLog" />
+        <!-- Firebase Messaging Service 등록 -->
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".ui.activity.DetailRestaurantActivity"
@@ -39,29 +41,28 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="@string/naver_client_id" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/google_app_ads_key" />
 
-        <activity android:name=".ui.activity.MainActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.IntroActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
+
                 <!-- "kakao{YOUR_NATIVE_APP_KEY}://kakaolink" 형식의 앱 실행 스킴을 설정하는데 사용 -->
-                <data android:host="kakaolink"
+                <data
+                    android:host="kakaolink"
                     android:scheme="@string/kakao_scheme" />
-
             </intent-filter>
-
         </activity>
     </application>
 

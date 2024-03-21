@@ -20,23 +20,23 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-//class MyFirebaseMessagingService : FirebaseMessagingService() {
-//
-//    override fun onNewToken(token: String) {
-//        super.onNewToken(token)
-//        Log.d("FCM", "New token: $token")
-//        saveTokenToLocal(token)
-//    }
-//
-//    private fun saveTokenToLocal(token: String) {
-////        sendTokenToServer(token)
-//        val sharedPreferences = getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
-//        with(sharedPreferences.edit()) {
-//            putString("fcmToken", token)
-//            apply()
-//        }
-//    }
-//}
+class MyFirebaseMessagingService : FirebaseMessagingService() {
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.d("FCM", "New token: $token")
+        saveTokenToLocal(token)
+    }
+
+    private fun saveTokenToLocal(token: String) {
+//        sendTokenToServer(token)
+        val sharedPreferences = getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putString("fcmToken", token)
+            apply()
+        }
+    }
+}
 
 
 

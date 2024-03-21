@@ -9,6 +9,6 @@
     android:textSize="12sp"
     android:textColor="@color/black"
     android:textAppearance="?attr/textAppearanceSubtitle1"
-    android:fontFamily="@font/bamin"
-    android:background="@drawable/spinner_ripple"> <!-- 새로운 배경 리소스 적용 -->
+    android:fontFamily="@font/naver_font"
+    android:background="@drawable/spinner_ripple">
 </TextView>

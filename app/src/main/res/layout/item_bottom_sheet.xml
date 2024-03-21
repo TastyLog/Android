@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:fontFamily="@font/bamin"
+            android:fontFamily="@font/naver_font"
             android:gravity="right"
             android:layout_marginTop="20dp"
             android:text="0.0km"
@@ -73,7 +73,7 @@
         android:layout_marginLeft="9dp"
         android:layout_marginTop="35dp"
         android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-        android:fontFamily="@font/bamin"
+        android:fontFamily="@font/naver_font_bold"
         android:text="123"
         android:textColor="@color/black"
         android:textSize="15sp" />
@@ -87,7 +87,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-            android:fontFamily="@font/bamin"
+            android:fontFamily="@font/naver_font"
             android:text="123"
             android:textColor="@color/sub_color_text_gray2"
             android:textSize="8sp"
@@ -101,7 +101,7 @@
             android:layout_marginTop="6dp"
             android:layout_below="@+id/textview_restaurant_category"
             android:layout_toRightOf="@id/card_view_list_restaurant_picture"
-            android:fontFamily="@font/bamin"
+            android:fontFamily="@font/naver_font"
             android:text="리뷰"
             android:textColor="@color/black"
             android:textSize="8sp" />
@@ -136,8 +136,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="3dp"
             android:padding="1dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/bamin"/>
+            android:fontFamily="@font/naver_font_bold"/>
 
     <View
         android:id="@+id/view_open"
@@ -157,7 +156,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:textSize="11sp"
-        android:fontFamily="@font/bamin"
+        android:fontFamily="@font/naver_font"
         android:textColor="@color/black"
         android:text="123"
         android:gravity="center_vertical"
@@ -172,7 +171,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:textSize="11sp"
-            android:fontFamily="@font/bamin"
+            android:fontFamily="@font/naver_font"
             android:textColor="@color/black"
             android:text="123"
             android:gravity="center_vertical"

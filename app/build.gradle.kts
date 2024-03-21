@@ -18,9 +18,9 @@ android {
         applicationId = "com.adam.tastylog"
         minSdk = 28
         targetSdk = 34
-        versionCode = 18
-//        versionName = "1.0.1-beta"
-        versionName = "1.1.0"
+        versionCode = 19
+        versionName = "1.0.1-internal"
+//        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -94,5 +94,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation(libs.play.services.ads)
     implementation(libs.simpleratingbar)
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
 
 }

@@ -1,7 +1,8 @@
 package com.adam.tastylog.model
 
-data class KeyWordRankModel(
-    val rank: Int,
+data class RealTimeSearchTermModel(
     val keyword: String,
-    val change: String // "+1", "-1", "NEW" 등의 변동값을 문자열로 저장
+    var rank: Int,
+    var state: String,
 )
+
