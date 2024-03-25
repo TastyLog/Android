@@ -74,10 +74,6 @@ class SearchRestaurantActivity : AppCompatActivity() {
             finish() // 액티비티 종료
         }
 
-//        // 새로고침 버튼 클릭 이벤트 처리
-//        binding.refreshButton.setOnClickListener {
-//            realTimeSearchTermViewModel.refreshRealTimeSearchTerms()
-//        }
 
         realTimeSearchTermViewModel.lastUpdateTime.observe(this, Observer { updateTime ->
             binding.textviewUpdateTime.text = updateTime
@@ -86,20 +82,35 @@ class SearchRestaurantActivity : AppCompatActivity() {
     }
 
 
+//    private fun setupRealTimeSearchTermRecyclerView() {
+//        realTimeSearchTermAdapter = RealTimeSearchTermAdapter(this, listOf())
+//        binding.recyclerviewRealTimeSearchTerm.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+//        binding.recyclerviewRealTimeSearchTerm.adapter = realTimeSearchTermAdapter
+//    }
+
     private fun setupRealTimeSearchTermRecyclerView() {
-        realTimeSearchTermAdapter = RealTimeSearchTermAdapter(this, listOf())
+        realTimeSearchTermAdapter = RealTimeSearchTermAdapter(this, listOf()) { keyword ->
+            // 클릭된 검색어로 검색을 수행
+            performSearchWithKeyword(keyword)
+        }
         binding.recyclerviewRealTimeSearchTerm.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         binding.recyclerviewRealTimeSearchTerm.adapter = realTimeSearchTermAdapter
     }
 
+    private fun performSearchWithKeyword(keyword: String) {
+        // Intent를 사용해 검색어 결과를 설정
+        val resultIntent = Intent().apply {
+            putExtra("search_query", keyword)
+        }
+        // 결과를 설정하고 현재 액티비티를 종료
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
+    }
 
-//    private fun observeRealTimeSearchTerms() {
-//        realTimeSearchTermViewModel.realTimeSearchTerms.observe(this, Observer { searchTerms ->
-//            // 데이터 업데이트
-//            realTimeSearchTermAdapter.updateData(searchTerms)
-//        })
-//    }
-//
+
+
+
+
     private fun observeRealTimeSearchTerms() {
         realTimeSearchTermViewModel.realTimeSearchTerms.observe(this, Observer { searchTerms ->
             // 데이터 업데이트
@@ -133,11 +144,35 @@ class SearchRestaurantActivity : AppCompatActivity() {
     }
 
 
+//    private fun saveSearchQuery(query: String) {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val sharedPreferences = getSharedPreferences("search_history", Context.MODE_PRIVATE)
+//            val editor = sharedPreferences.edit()
+//            val existingHistory = sharedPreferences.getStringSet("history", setOf())?.toMutableSet() ?: mutableSetOf()
+//            existingHistory.add(query) // 새 쿼리 추가
+//            editor.putStringSet("history", existingHistory)
+//            editor.apply()
+//
+//            // UI 업데이트를 메인 스레드로 전환
+//            withContext(Dispatchers.Main) {
+//                loadSearchHistory() // UI 업데이트 관련 코드
+//            }
+//        }
+//    }
+
     private fun saveSearchQuery(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val sharedPreferences = getSharedPreferences("search_history", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             val existingHistory = sharedPreferences.getStringSet("history", setOf())?.toMutableSet() ?: mutableSetOf()
+
+            // 새 쿼리 추가 전에 최대 저장 개수를 확인하고, 초과한다면 가장 오래된 항목 삭제
+            if (existingHistory.size >= 10) {
+                // 가장 오래된 검색어 삭제. sortedBy 를 사용하면 오름차순 정렬이 되므로, first()를 통해 가장 오래된 검색어를 가져올 수 있음!
+                val oldestQuery = existingHistory.sorted().first()
+                existingHistory.remove(oldestQuery)
+            }
+
             existingHistory.add(query) // 새 쿼리 추가
             editor.putStringSet("history", existingHistory)
             editor.apply()
@@ -148,6 +183,7 @@ class SearchRestaurantActivity : AppCompatActivity() {
             }
         }
     }
+
 
 
     private fun handleSearchQuery(query: String) {
