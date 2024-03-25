@@ -12,18 +12,25 @@ import com.adam.tastylog.model.RealTimeSearchTermModel
 
 
 
-class RealTimeSearchTermAdapter(private var context: Context, private var data: List<RealTimeSearchTermModel>) :
-    RecyclerView.Adapter<RealTimeSearchTermAdapter.ViewHolder>() {
+class RealTimeSearchTermAdapter(
+    private val context: Context,
+    private var data: List<RealTimeSearchTermModel>,
+    private val onItemClicked: (String) -> Unit
+) : RecyclerView.Adapter<RealTimeSearchTermAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val rankTextView: TextView = view.findViewById(R.id.textView_search_rank)
         private val keywordTextView: TextView = view.findViewById(R.id.textView_search_rank_keyword)
         private val imageViewSearchRankChange: ImageView = view.findViewById(R.id.imageview_search_rank_change)
 
-
-        fun bind(item: RealTimeSearchTermModel, context: Context) {
+        fun bind(item: RealTimeSearchTermModel) {
             rankTextView.text = item.rank.toString()
             keywordTextView.text = item.keyword
+
+            // 클릭 이벤트 설정
+            itemView.setOnClickListener {
+                onItemClicked(item.keyword)
+            }
 
             val iconRes = when (item.state) {
                 "new" -> R.drawable.icon_arrow_new
@@ -32,7 +39,6 @@ class RealTimeSearchTermAdapter(private var context: Context, private var data: 
                 "none" -> R.drawable.icon_arrow_same
                 else -> 0 // 기본값이나 오류 상태를 위한 아이콘. 필요에 따라 변경 가능
             }
-
             if (iconRes != 0) {
                 imageViewSearchRankChange.setImageResource(iconRes)
                 imageViewSearchRankChange.visibility = View.VISIBLE
@@ -40,9 +46,7 @@ class RealTimeSearchTermAdapter(private var context: Context, private var data: 
                 imageViewSearchRankChange.visibility = View.GONE
             }
         }
-
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_real_time_search_term, parent, false)
@@ -50,11 +54,10 @@ class RealTimeSearchTermAdapter(private var context: Context, private var data: 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data[position], context)
+        holder.bind(data[position])
     }
 
     override fun getItemCount(): Int = data.size
-
     fun updateData(newData: List<RealTimeSearchTermModel>) {
         val reorderedData = rearrangeData(newData) // 데이터 재배치
         this.data = reorderedData
