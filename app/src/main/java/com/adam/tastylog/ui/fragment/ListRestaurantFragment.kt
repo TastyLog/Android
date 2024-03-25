@@ -13,7 +13,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,19 +42,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ListRestaurantFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentListRestaurantBinding
+    private lateinit var restaurantViewModel: RestaurantViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var currentSortOption: String = "거리순" // 기본값으로 "거리순" 설정
     private lateinit var shimmerLayout: ShimmerFrameLayout
-//    private var selectedYoutubers = mutableSetOf<String>()
-//    private var youtuberNameToIdMap = mapOf<String, Int>()
+    private var selectedYoutubers = mutableSetOf<String>()
+    private var youtuberNameToIdMap = mapOf<String, Int>()
 
-    private val restaurantViewModel: RestaurantViewModel by activityViewModels {
-        RestaurantViewModelFactory(RetrofitBuilder.restaurantService.let { restaurantService ->
-            RestaurantRepository(GetRestaurantListUseCase(restaurantService))
-        })
-    }
-
-//    private lateinit var youtuberViewModel: YoutuberViewModel
+    private lateinit var listYoutuberAdapter: ListYoutuberChipAdapter
+    private lateinit var youtuberRecyclerView: RecyclerView
+    private lateinit var youtuberViewModel: YoutuberViewModel
 
     private lateinit var listRestaurantAdapter: ListRestaurantAdapter
 
@@ -64,6 +60,9 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
     private var currentSearchQuery: String? = null
 
 
+    private var lastClickTime = 0L // 이전에 클릭한 시간을 저장하는 변수
+    private val clickDelay = 500L // 클릭 딜레이 (밀리초)
+
     companion object {
         const val SEARCH_REQUEST_CODE = 100 // 예시 요청 코드
     }
@@ -71,11 +70,16 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewModel 초기화
-//        val restaurantService = RetrofitBuilder.restaurantService
-//        val getYoutuberListUseCase = GetYoutuberListUseCase(restaurantService)
-//        val youtuberRepository = YoutuberRepository(getYoutuberListUseCase)
-//        youtuberViewModel = ViewModelProvider(this,YoutuberViewModelFactory(youtuberRepository)).get(YoutuberViewModel::class.java)
-//        youtuberViewModel.getYoutubers()
+        val restaurantService = RetrofitBuilder.restaurantService
+        val getRestaurantListUseCase = GetRestaurantListUseCase(restaurantService)
+        val restaurantRepository = RestaurantRepository(getRestaurantListUseCase)
+        restaurantViewModel = ViewModelProvider(this, RestaurantViewModelFactory(restaurantRepository)).get(RestaurantViewModel::class.java)
+
+
+        val getYoutuberListUseCase = GetYoutuberListUseCase(restaurantService)
+        val youtuberRepository = YoutuberRepository(getYoutuberListUseCase)
+        youtuberViewModel = ViewModelProvider(this,YoutuberViewModelFactory(youtuberRepository)).get(YoutuberViewModel::class.java)
+        youtuberViewModel.getYoutubers()
 
 
         // Adapter 인스턴스 초기화
@@ -93,8 +97,10 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
+        setupYoutuberFilteringUI()
         getCurrentLocationAndFetchSortedByDistanceRestaurants()
         updateCurrentLocation() // 현재 위치 정보 업데이트
+//        setupEditTextSearch()
         setupEditTextSearchListener()
 
     }
@@ -128,7 +134,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
             if (currentSortOption != itemSelected) {
                 if (itemSelected != null) {
                     currentSortOption = itemSelected
-//                    listYoutuberAdapter.notifyDataSetChanged()
+                    listYoutuberAdapter.notifyDataSetChanged()
                     showTravelData()
 
                     when (itemSelected) {
@@ -156,6 +162,9 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
                 val totalItemCount = layoutManager.itemCount
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
+                // 스크롤 중 BottomSheet 닫힘 방지
+//                dialog?.setCancelable(false)
+
                 // 전체 아이템의 75% 지점에 도달했는지 확인
                 val loadMoreThreshold = (totalItemCount * 0.75).toInt()
                 if ((visibleItemCount + firstVisibleItemPosition) >= loadMoreThreshold && firstVisibleItemPosition >= 0) {
@@ -173,12 +182,12 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
             }
         })
 
+
         restaurantViewModel.restaurants.observe(viewLifecycleOwner, Observer { restaurants ->
             // 데이터 업데이트
-            listRestaurantAdapter.updateRestaurantData(restaurants)
+            listRestaurantAdapter.updateRestaurantData(filterRestaurantsByYoutuber(restaurants))
             hideTravelData()
         })
-
 
         // ViewModel의 showShimmer 상태를 관찰
         restaurantViewModel.showShimmer.observe(viewLifecycleOwner) { show ->
@@ -191,14 +200,6 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
 
         backButton.setOnClickListener { dismiss() }
         shimmerLayout = binding.shimmerLayout
-
-
-        // TextInputLayout 클릭 리스너 설정
-        binding.textviewYoutuberFilter.setOnClickListener {
-            // YoutuberSelectionFragment 표시 로직
-            val fragment = YoutuberSelectionFragment() // YoutuberSelectionFragment 인스턴스 생성
-            fragment.show(parentFragmentManager, fragment.tag) // Fragment 표시
-        }
     }
 
 
@@ -219,7 +220,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
             currentLongitude?.let { lng ->
                 val nextPage = restaurantViewModel.currentPage
                 val sortOption = getApiSortOption(currentSortOption)
-                val youtuberIds = restaurantViewModel.currentYoutuberIds
+                val youtuberIds = selectedYoutubers.mapNotNull { youtuberNameToIdMap[it] }.toList()
 
                 restaurantViewModel.searchRestaurants(lat, lng, currentSearchQuery, sortOption, youtuberIds, nextPage)
             }
@@ -232,7 +233,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
                     val latitude = it.latitude
                     val longitude = it.longitude
                     val sortOption = getApiSortOption(currentSortOption)
-                    val youtuberIds = restaurantViewModel.currentYoutuberIds
+                    val youtuberIds = selectedYoutubers.mapNotNull { youtuberNameToIdMap[it] }
 
 
                     if (youtuberIds.isNotEmpty()) {
@@ -268,7 +269,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
                 location?.let {
                     val latitude = it.latitude
                     val longitude = it.longitude
-                    val youtuberIds = restaurantViewModel.currentYoutuberIds
+                    val youtuberIds = selectedYoutubers.mapNotNull { youtuberNameToIdMap[it] }
 
                     // 유튜버 필터링이 있는 경우에도 sortOption 유지
                     val finalSortOption = if (youtuberIds.isNotEmpty()) sortOption else sortOption
@@ -290,6 +291,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
         }
     }
 
+
     // Shimmer를 표시하는 함수
     private fun showTravelData() {
         shimmerLayout.startShimmer()
@@ -303,39 +305,77 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
         binding.recyclerviewListRestaurant.visibility = View.VISIBLE
     }
 
-//    private fun applyNewFilter() {
-//        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-//                location?.let {
-//                    val latitude = it.latitude
-//                    val longitude = it.longitude
-//                    val sortOption = getApiSortOption(currentSortOption)
-//                    val youtuberIds = restaurantViewModel.currentYoutuberIds
-//                    val searchQuery = binding.editTextSearch.text.toString() // EditText에서 검색어를 가져옴
-//
-//                    // 현재 검색어도 포함하여 ViewModel의 applyNewFilter 함수 호출
-//                    restaurantViewModel.applyNewFilter(latitude, longitude, sortOption, youtuberIds, searchQuery)
-//
-//                }
-//            }
-//        }
-//    }
-        private fun applyNewFilter() {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-                    location?.let {
-                        val latitude = it.latitude
-                        val longitude = it.longitude
-                        val sortOption = getApiSortOption(currentSortOption)
-                        val youtuberIds = restaurantViewModel.currentYoutuberIds
-//                        val searchQuery = binding.editTextSearchFragment.text.toString() // EditText에서 검색어를 가져옴
 
-                        // Apply new filter with the current search word, sorting option, and youtuber IDs
-                        restaurantViewModel.applyNewFilter(latitude, longitude, sortOption, youtuberIds, "")
-                    }
+    private fun handleYoutuberSelectionWithDelay(youtuber: YoutuberModel) {
+        val currentTime = System.currentTimeMillis() // 현재 시간을 가져오기.
+        if (currentTime - lastClickTime >= clickDelay) { // 현재 시간과 마지막 클릭 시간의 차이가 클릭 딜레이보다 크거나 같은 경우에만 클릭 이벤트를 처리
+            handleYoutuberSelection(youtuber)
+            lastClickTime = currentTime // 마지막 클릭 시간을 업데이트.
+        }
+    }
+
+
+    private fun filterRestaurantsByYoutuber(restaurants: List<RestaurantModel>): List<RestaurantModel> {
+        return if (selectedYoutubers.isEmpty()) {
+            restaurants
+        } else {
+            restaurants.filter { it.youtuberName in selectedYoutubers }
+        }
+    }
+
+    // 추가적으로 유튜버 필터링 UI 구성 및 리스너 설정
+    private fun setupYoutuberFilteringUI() {
+        youtuberRecyclerView = binding.recyclerviewYoutuberChip
+//        listYoutuberAdapter = ListYoutuberChipAdapter(listOf(), selectedYoutubers) { youtuber ->
+//            handleYoutuberSelection(youtuber)
+//        }
+        listYoutuberAdapter = ListYoutuberChipAdapter(listOf(), selectedYoutubers) { youtuber ->
+            handleYoutuberSelectionWithDelay(youtuber)
+        }
+        youtuberRecyclerView.adapter = listYoutuberAdapter
+        youtuberRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        // 유튜버 이름과 ID를 매핑
+        youtuberViewModel.youtubers.observe(viewLifecycleOwner, Observer { youtubers ->
+            val allYoutubers = listOf(
+                YoutuberModel("전체", "https://food-log-bucket.s3.ap-northeast-2.amazonaws.com/allImage.png", 0, "")
+            ) + youtubers
+
+            youtuberNameToIdMap = youtubers.associate { it.youtuberName to it.youtuberId }
+            listYoutuberAdapter.updateYoutuberData(allYoutubers)
+        })
+    }
+    private fun handleYoutuberSelection(youtuber: YoutuberModel) {
+        if (youtuber.youtuberName == "전체") {
+            selectedYoutubers.clear() // 유튜버 선택 초기화
+        } else {
+            if (selectedYoutubers.contains(youtuber.youtuberName)) {
+                selectedYoutubers.remove(youtuber.youtuberName)
+            } else {
+                selectedYoutubers.add(youtuber.youtuberName)
+            }
+        }
+        listYoutuberAdapter.notifyDataSetChanged()
+        applyNewFilter() // 필터링 적용
+    }
+    private fun applyNewFilter() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                location?.let {
+                    val latitude = it.latitude
+                    val longitude = it.longitude
+                    val sortOption = getApiSortOption(currentSortOption)
+                    val youtuberIds = selectedYoutubers.mapNotNull { youtuberNameToIdMap[it] }.toList()
+                    val searchQuery = binding.editTextSearch.text.toString() // EditText에서 검색어를 가져옴
+
+                    // 현재 검색어도 포함하여 ViewModel의 applyNewFilter 함수 호출
+                    restaurantViewModel.applyNewFilter(latitude, longitude, sortOption, youtuberIds, searchQuery)
+
                 }
             }
         }
+    }
+
     private fun setupEditTextSearchListener() {
         val editTextSearch = view?.findViewById<EditText>(R.id.editTextSearch)
         // EditText 클릭 시 포커스를 받지 않도록 설정
@@ -366,7 +406,7 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
                         currentLongitude?.let { lng ->
                             // 새 검색어로 검색 실행
                             val sortOption = getApiSortOption(currentSortOption)
-                            val youtuberIds = restaurantViewModel.currentYoutuberIds
+                            val youtuberIds = selectedYoutubers.mapNotNull { youtuberNameToIdMap[it] }
                             restaurantViewModel.searchRestaurants(lat, lng, currentSearchQuery, sortOption, youtuberIds)
                         }
                     }
@@ -375,19 +415,6 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
         }
     }
 
-//    // 검색 결과를 받기 위한 onActivityResult 메소드 오버라이드
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == SEARCH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//            data?.getStringExtra("search_query")?.let { searchQuery ->
-//                if (searchQuery.isNotEmpty()) {
-//                    // Update the search word in ViewModel
-//                    restaurantViewModel.updateSearchWord(searchQuery)
-//                    applyNewFilter()
-//                }
-//            }
-//        }
-//    }
 
     private fun updateCurrentLocation() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -399,4 +426,6 @@ class ListRestaurantFragment : BottomSheetDialogFragment() {
             }
         }
     }
+
+
 }

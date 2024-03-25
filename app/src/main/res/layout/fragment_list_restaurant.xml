@@ -67,48 +67,48 @@
 
                 </LinearLayout>
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recyclerview_youtuber_chip"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:nestedScrollingEnabled="false"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                    tools:listitem="@layout/item_influencer_chip" />-->
-
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_youtuber_chip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal">
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_influencer_chip" />
 
-                    <!-- 기존의 나머지 뷰들을 이어서 배치합니다 -->
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/CustomExposedDropdownMenu"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        app:endIconDrawable="@drawable/icon_drop_down"
-                        app:endIconMode="custom"
-                        app:endIconTint="@color/black"
-                        app:boxBackgroundMode="outline"
-                        app:boxStrokeWidth="1dp">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textview_youtuber_filter"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/textview_corner_radius_white"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:gravity="center_vertical"
-                            android:paddingStart="15dp"
-                            android:text="유튜버"
-                            android:textColor="@color/black"
-                            android:textSize="10sp" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="right"-->
+<!--                    android:orientation="horizontal">-->
 
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                    &lt;!&ndash; 기존의 나머지 뷰들을 이어서 배치합니다 &ndash;&gt;-->
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        style="@style/CustomExposedDropdownMenu"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_gravity="center_vertical"-->
+<!--                        app:endIconDrawable="@drawable/icon_drop_down"-->
+<!--                        app:endIconMode="custom"-->
+<!--                        app:endIconTint="@color/black"-->
+<!--                        app:boxBackgroundMode="outline"-->
+<!--                        app:boxStrokeWidth="1dp">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/textview_youtuber_filter"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:background="@drawable/textview_corner_radius_white"-->
+<!--                            android:clickable="false"-->
+<!--                            android:focusable="false"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="15dp"-->
+<!--                            android:text="유튜버"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="10sp" />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/autoCompleteTextInputLayout"
@@ -116,6 +116,7 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:layout_margin="10dp"
+                        android:layout_gravity="right"
                         android:background="@color/white"
                         app:endIconTint="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -134,8 +135,7 @@
                             android:textSize="10sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-
+<!--                </LinearLayout>-->
 
 
                 <androidx.recyclerview.widget.RecyclerView
